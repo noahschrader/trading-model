@@ -1,3 +1,11 @@
+# IntelliJ
+.idea/
+
+# Jane Street Market Prediction Datasets
+jane-street-market-prediction.zip
+janestreet/
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
