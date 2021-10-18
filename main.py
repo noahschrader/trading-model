@@ -3,7 +3,7 @@ import pandas as pandas
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import GridSearchCV, cross_val_score
 from sklearn.preprocessing import StandardScaler
 
@@ -20,14 +20,16 @@ train = StandardScaler().fit_transform(train)
 # meta.fit(train, target)
 # print(meta.best_params_)
 
-knn = KNeighborsClassifier(n_neighbors=1000)
+knn = KNeighborsClassifier()
 knn_score = cross_val_score(knn, train, target, cv=10, scoring="roc_auc")
 print(knn_score.mean())
 
-mn = MultinomialNB()
-mn.fit(train, target)
-mn_score = cross_val_score(mn, train, target, cv=10, scoring="roc_auc")
-print(knn_score.mean())
-
-lr = LogisticRegression(max_iter=7000).fit(train, target)
+lr = LogisticRegression()
+lr.fit(train, target)
 lr_score = cross_val_score(lr, train, target, cv=10, scoring="roc_auc")
+print(lr_score.mean())
+
+nb = GaussianNB()
+nb.fit(train, target)
+nb_score = cross_val_score(nb, train, target, cv=10, scoring="roc_auc")
+print(nb_score.mean())
