@@ -12,6 +12,12 @@ dataset = pandas.read_csv('train.csv')
 target = numpy.where((dataset.resp_1 > 0) & (dataset.resp_2 > 0) & (dataset.resp_3 > 0) &
                      (dataset.resp_4 > 0) & (dataset.resp > 0), 1, 0)
 train = dataset[['date', 'weight', 'resp_1', 'resp_2', 'resp_3', 'resp_4', 'resp']]
+
+# data exploration
+print(train.iloc[:, 2:7].describe())
+print(train.corr())
+
+# models
 train = StandardScaler().fit_transform(train)
 
 # needed to tune n_neighbors parameter for knn
