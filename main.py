@@ -7,6 +7,9 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import GridSearchCV, cross_val_score, cross_val_predict
 from sklearn.preprocessing import StandardScaler
 
+pandas.set_option('display.max_columns', 10)
+pandas.set_option('display.width', 1000)
+
 dataset = pandas.read_csv('train.csv')
 
 target = numpy.where((dataset.resp_1 > 0) & (dataset.resp_2 > 0) & (dataset.resp_3 > 0) &
@@ -14,8 +17,8 @@ target = numpy.where((dataset.resp_1 > 0) & (dataset.resp_2 > 0) & (dataset.resp
 train = dataset[['date', 'weight', 'resp_1', 'resp_2', 'resp_3', 'resp_4', 'resp']]
 
 # data exploration
-print(train.iloc[:, 2:7].describe())
-print(train.corr())
+print(train.iloc[:, 1:7].describe())
+print(train.iloc[:, 1:7].corr())
 
 # models
 train = StandardScaler().fit_transform(train)
